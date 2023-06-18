@@ -1,35 +1,30 @@
 const homeDomain = 'http://localhost:8080';
 
-await fetchEmployees();
+await fetchOutlets();
 
-document.getElementById("employeeForm").addEventListener("submit", postFormData);
-document.querySelector('.post-update-button').onclick = updateEmployee;
+document.getElementById("outlet-form").addEventListener("submit", postFormData);
+document.querySelector('.post-update-button').onclick = updateOutlet;
 document.querySelector('.cancel-update-button').onclick = toggleUpdateContainer;
-document.querySelector('.confirm-deletion-button').onclick = deleteEmployee;
+document.querySelector('.confirm-deletion-button').onclick = deleteOutlet;
 document.querySelector('.cancel-deletion-button').onclick = toggleConfirmationContainer;
 
-function fetchFormData(nameInputId, addressInputId, typeInputId) {
+function fetchFormData(nameInputId, addressInputId) {
   
-  const type = document.getElementById(typeInputId).value;
   const name = document.getElementById(nameInputId).value;
   const address = document.getElementById(addressInputId).value;
-  const type = document.getElementById(typeInputId).value;
-  const type = document.getElementById(typeInputId).value;
-  const type = document.getElementById(typeInputId).value;
   
-  document.getElementById("employeeForm").reset();
+  document.getElementById("outlet-form").reset();
 
   return {
     name,
-    address,
-    type
+    address
   };
 }
 
-async function fetchEmployees() {
+async function fetchOutlets() {
 
   // TODO: Integration with backend
-  // const response = await fetch(`${homeDomain}/v1/employee`,
+  // const response = await fetch(`${homeDomain}/v1/Outlet`,
     // {
     //   method: 'POST',
     //   headers: {
@@ -49,25 +44,21 @@ async function fetchEmployees() {
       id: "130tbvg302t8",
       name: "Zeca Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
     },
     {
       id: "8230tbvg302t8",
       name: "Mamou Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
     },
     {
       id: "bvg302t8dethjk",
       name: "Chupou Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
     },
     {
       id: "wejkoprvyh4p",
       name: "Fudeu Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
     },
   ];
 
@@ -76,30 +67,27 @@ async function fetchEmployees() {
 
 }
 
-// Function to add employee to the table
+// Function to add Outlet to the table
 function insertIntoTable(data) {
 
-  data.forEach((employee, index) => {
-    const tableBody = document.getElementById("employeeTable").getElementsByTagName("tbody")[0];
+  data.forEach((outlet, index) => {
+    const tableBody = document.getElementById("outlet-table").getElementsByTagName("tbody")[0];
     const newRow = tableBody.insertRow();
 
     const idCell = newRow.insertCell(0);
-    idCell.innerHTML = employee.id;
+    idCell.innerHTML = outlet.id;
 
     const nameCell = newRow.insertCell(1);
-    nameCell.innerHTML = employee.name;
+    nameCell.innerHTML = outlet.name;
 
     const emailCell = newRow.insertCell(2);
-    emailCell.innerHTML = employee.address;
+    emailCell.innerHTML = outlet.address;
 
-    const departmentCell = newRow.insertCell(3);
-    departmentCell.innerHTML = employee.type;
-
-    const actionCell = newRow.insertCell(4);
+    const actionCell = newRow.insertCell(3);
     actionCell.innerHTML =`
       <div class="card-button-container">
-        <button class="update-button" id="update-button-${index}" data-id="${employee.id}">Atualizar</button>
-        <button class="delete-button" id="delete-button-${index}" data-id="${employee.id}">Apagar</button>
+        <button class="update-button" id="update-button-${index}" data-id="${outlet.id}">Atualizar</button>
+        <button class="delete-button" id="delete-button-${index}" data-id="${outlet.id}">Apagar</button>
       </div>
     `
     document.getElementById(`update-button-${index}`).addEventListener('click', toggleUpdateContainer);
@@ -109,12 +97,12 @@ function insertIntoTable(data) {
 }
 
 function insertEmptyMessage() {
-  const tableBody = document.getElementById("employeeTable");
+  const tableBody = document.getElementById("outlet-table");
 
   
   const html = `
     <div class="card" id="card">
-      <p>Sem funcionários cadastrados.</p>
+      <p>Sem pontos de venda cadastrados.</p>
     </div>
   `;
   tableBody.insertAdjacentHTML('afterend', html)
@@ -127,13 +115,12 @@ async function postFormData(event) {
 
   const nameInputId = 'name';
   const addressInputId = 'address';
-  const typeInputId = 'type';
 
-  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
+  const data = fetchFormData(nameInputId, addressInputId);
 
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/employee`,
+    `${homeDomain}/v1/outlet`,
     {
       method: 'POST',
       headers: {
@@ -174,19 +161,19 @@ function toggleConfirmationContainer() {
   else deleteContainer.style.display = "none";
 }
 
-async function updateEmployee() {
+async function updateOutlet() {
   
   const nameInputId = 'update-name';
   const addressInputId = 'update-address';
   const typeInputId = 'update-type';
 
-  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
+  const data = fetchFormData(nameInputId, addressInputId);
 
   data.id = this.dataset.id;
 
     // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/employee/update`,
+    `${homeDomain}/v1/outlet/update`,
     {
       method: 'POST',
       headers: {
@@ -203,13 +190,13 @@ async function updateEmployee() {
   }
 }
 
-async function deleteEmployee() {
+async function deleteOutlet() {
   const data = {
     id: this.dataset.id
   };
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/employee/update`,
+    `${homeDomain}/v1/outlet/update`,
     {
       method: 'POST',
       headers: {
