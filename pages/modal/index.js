@@ -1,35 +1,40 @@
 const homeDomain = 'http://localhost:8080';
 
-await fetchEmployees();
+await fetchmodals();
 
-document.getElementById("employeeForm").addEventListener("submit", postFormData);
-document.querySelector('.post-update-button').onclick = updateEmployee;
+document.getElementById("modal-form").addEventListener("submit", postFormData);
+document.querySelector('.post-update-button').onclick = updatemodal;
 document.querySelector('.cancel-update-button').onclick = toggleUpdateContainer;
-document.querySelector('.confirm-deletion-button').onclick = deleteEmployee;
+document.querySelector('.confirm-deletion-button').onclick = deletemodal;
 document.querySelector('.cancel-deletion-button').onclick = toggleConfirmationContainer;
 
-function fetchFormData(nameInputId, addressInputId, typeInputId) {
+function fetchFormData(typeInputId, codeInputId, modelInputId, capacityInputId, manufactureYearInputId, companyNameInputId, activeInputId) {
   
   const type = document.getElementById(typeInputId).value;
-  const name = document.getElementById(nameInputId).value;
-  const address = document.getElementById(addressInputId).value;
-  const type = document.getElementById(typeInputId).value;
-  const type = document.getElementById(typeInputId).value;
-  const type = document.getElementById(typeInputId).value;
+  const code = document.getElementById(codeInputId).value;
+  const model = document.getElementById(modelInputId).value;
+  const capacity = document.getElementById(capacityInputId).value;
+  const manufactureYear = document.getElementById(manufactureYearInputId).value;
+  const companyName = document.getElementById(companyNameInputId).value;
+  const active = document.getElementById(activeInputId).value;
   
-  document.getElementById("employeeForm").reset();
+  document.getElementById("modalForm").reset();
 
   return {
-    name,
-    address,
-    type
+    type,
+    code,
+    model,
+    capacity,
+    manufactureYear,
+    companyName,
+    active,
   };
 }
 
-async function fetchEmployees() {
+async function fetchmodals() {
 
   // TODO: Integration with backend
-  // const response = await fetch(`${homeDomain}/v1/employee`,
+  // const response = await fetch(`${homeDomain}/v1/modal`,
     // {
     //   method: 'POST',
     //   headers: {
@@ -46,28 +51,64 @@ async function fetchEmployees() {
 
   const data = [
     {
-      id: "130tbvg302t8",
-      name: "Zeca Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
-    },
-    {
       id: "8230tbvg302t8",
-      name: "Mamou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
+      type: 'Ônibus',
+      code: 23562345,
+      model: 'Bem Grande',
+      capacity: '50',
+      manufactureYear: '1693',
+      companyName: 'Rothschild',
+      active: true,
     },
     {
-      id: "bvg302t8dethjk",
-      name: "Chupou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
+      id: "t24by24ynb2",
+      type: 'Ônibus',
+      code: 23562345,
+      model: 'Bem Grande',
+      capacity: '50',
+      manufactureYear: '1693',
+      companyName: 'Rothschild',
+      active: true,
     },
     {
-      id: "wejkoprvyh4p",
-      name: "Fudeu Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
+      id: "rwjmw5iwb46u",
+      type: 'Ônibus',
+      code: 23562345,
+      model: 'Bem Grande',
+      capacity: '50',
+      manufactureYear: '1693',
+      companyName: 'Rothschild',
+      active: true,
+    },
+    {
+      id: "46782h66t3w5",
+      type: 'Ônibus',
+      code: 23562345,
+      model: 'Bem Grande',
+      capacity: '50',
+      manufactureYear: '1693',
+      companyName: 'Rothschild',
+      active: false,
+    },
+    {
+      id: "4b6826vsrte",
+      type: 'Ônibus',
+      code: 23562345,
+      model: 'Bem Grande',
+      capacity: '50',
+      manufactureYear: '1693',
+      companyName: 'Rothschild',
+      active: true,
+    },
+    {
+      id: "4v67u625762iw",
+      type: 'Ônibus',
+      code: 23562345,
+      model: 'Bem Grande',
+      capacity: '50',
+      manufactureYear: '1693',
+      companyName: 'Rothschild',
+      active: false,
     },
   ];
 
@@ -76,30 +117,42 @@ async function fetchEmployees() {
 
 }
 
-// Function to add employee to the table
+// Function to add modal to the table
 function insertIntoTable(data) {
 
-  data.forEach((employee, index) => {
-    const tableBody = document.getElementById("employeeTable").getElementsByTagName("tbody")[0];
+  data.forEach((modal, index) => {
+    const tableBody = document.getElementById("modal-table").getElementsByTagName("tbody")[0];
     const newRow = tableBody.insertRow();
 
     const idCell = newRow.insertCell(0);
-    idCell.innerHTML = employee.id;
+    idCell.innerHTML = modal.id;
 
-    const nameCell = newRow.insertCell(1);
-    nameCell.innerHTML = employee.name;
+    const typeCell = newRow.insertCell(1);
+    typeCell.innerHTML = modal.type;
 
-    const emailCell = newRow.insertCell(2);
-    emailCell.innerHTML = employee.address;
+    const codeCell = newRow.insertCell(2);
+    codeCell.innerHTML = modal.code;
 
-    const departmentCell = newRow.insertCell(3);
-    departmentCell.innerHTML = employee.type;
+    const modelCell = newRow.insertCell(3);
+    modelCell.innerHTML = modal.model;
 
-    const actionCell = newRow.insertCell(4);
+    const capacityCell = newRow.insertCell(4);
+    capacityCell.innerHTML = modal.capacity;
+
+    const manufactureYearCell = newRow.insertCell(5);
+    manufactureYearCell.innerHTML = modal.manufactureYear;
+
+    const companyNameCell = newRow.insertCell(6);
+    companyNameCell.innerHTML = modal.companyName;
+
+    const activeCell = newRow.insertCell(7);
+    activeCell.innerHTML = modal.active;
+
+    const actionCell = newRow.insertCell(8);
     actionCell.innerHTML =`
       <div class="card-button-container">
-        <button class="update-button" id="update-button-${index}" data-id="${employee.id}">Atualizar</button>
-        <button class="delete-button" id="delete-button-${index}" data-id="${employee.id}">Apagar</button>
+        <button class="update-button" id="update-button-${index}" data-id="${modal.id}">Atualizar</button>
+        <button class="delete-button" id="delete-button-${index}" data-id="${modal.id}">Apagar</button>
       </div>
     `
     document.getElementById(`update-button-${index}`).addEventListener('click', toggleUpdateContainer);
@@ -109,12 +162,12 @@ function insertIntoTable(data) {
 }
 
 function insertEmptyMessage() {
-  const tableBody = document.getElementById("employeeTable");
+  const tableBody = document.getElementById("modalTable");
 
   
   const html = `
     <div class="card" id="card">
-      <p>Sem funcionários cadastrados.</p>
+      <p>Sem modais cadastrados.</p>
     </div>
   `;
   tableBody.insertAdjacentHTML('afterend', html)
@@ -125,15 +178,19 @@ function insertEmptyMessage() {
 async function postFormData(event) {
   event.preventDefault();
 
-  const nameInputId = 'name';
-  const addressInputId = 'address';
   const typeInputId = 'type';
+  const codeInputId = 'code';
+  const modelInputId = 'model';
+  const capacityInputId = 'capacity';
+  const manufactureYearInputId = 'manufactureYear';
+  const companyNameInputId = 'companyName';
+  const activeInputId = 'active';
 
-  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
+  const data = fetchFormData(typeInputId, codeInputId, modelInputId, capacityInputId, manufactureYearInputId, companyNameInputId, activeInputId);
 
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/employee`,
+    `${homeDomain}/v1/modal`,
     {
       method: 'POST',
       headers: {
@@ -174,19 +231,23 @@ function toggleConfirmationContainer() {
   else deleteContainer.style.display = "none";
 }
 
-async function updateEmployee() {
-  
-  const nameInputId = 'update-name';
-  const addressInputId = 'update-address';
-  const typeInputId = 'update-type';
+async function updatemodal() {
 
-  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
+  const typeInputId = 'update-type';
+  const codeInputId = 'update-code';
+  const modelInputId = 'update-model';
+  const capacityInputId = 'update-capacity';
+  const manufactureYearInputId = 'update-manufactureYear';
+  const companyNameInputId = 'update-companyName';
+  const activeInputId = 'update-active';
+
+  const data = fetchFormData(typeInputId, codeInputId, modelInputId, capacityInputId, manufactureYearInputId, companyNameInputId, activeInputId);
 
   data.id = this.dataset.id;
 
     // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/employee/update`,
+    `${homeDomain}/v1/modal/update`,
     {
       method: 'POST',
       headers: {
@@ -203,13 +264,13 @@ async function updateEmployee() {
   }
 }
 
-async function deleteEmployee() {
+async function deletemodal() {
   const data = {
     id: this.dataset.id
   };
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/employee/update`,
+    `${homeDomain}/v1/modal/update`,
     {
       method: 'POST',
       headers: {
