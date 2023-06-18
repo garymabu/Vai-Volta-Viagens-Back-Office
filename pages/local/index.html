@@ -21,29 +21,29 @@
 <body>
   <div class="container">
     <h1>Sistema de Gerenciamento de Ponto de Venda</h1>
-    <form id="outlet-form">
-      <h2>Registrar Ponto de Venda</h2>
+    <form id="local-form">
+      <h2>Registrar Local</h2>
       <div class="form-inputs">
         <div>
-          <label for="name">Nome:</label>
-          <input type="text" id="name" name="name" required autocomplete="on">
+          <label for="city">Cidade:</label>
+          <input type="text" id="city" name="city" required autocomplete="on">
         </div>
         <div>
-          <label for="address">Endereço:</label>
-          <input type="text" id="address" name="address" required autocomplete="on">
+          <label for="airport">Aeroporto:</label>
+          <input type="text" id="airport" name="airport" required autocomplete="on">
         </div>
       </div>
       <div class="submit-button">
-        <input type="submit" value="Adicionar Pontot de Venda">
+        <input type="submit" value="Adicionar Local">
       </div>
     </form>
     
-    <table class="table" id="outlet-table">
+    <table class="table" id="local-table">
       <thead>
         <tr>
           <th>Id</th>
-          <th>Nome</th>
-          <th>Endereço</th>
+          <th>Cidade</th>
+          <th>Aeroporto</th>
           <th>Ação</th>
         </tr>
       </thead>
@@ -55,8 +55,8 @@
     <div class="update-form-container">
       <h2>Atualizar Registro</h2>
       <div class="update-inputs">
-        <input id="update-name" type="text" placeholder="Nome" autocomplete="on" />
-        <input id="update-address" type="text" placeholder="Endereço" autocomplete="on" />
+        <input id="update-city" type="text" placeholder="Cidade" autocomplete="on" />
+        <input id="update-airport" type="text" placeholder="Aeroporto" autocomplete="on" />
       </div>
       <div class="update-button-container">
         <button class="post-update-button">Atualizar</button>  
