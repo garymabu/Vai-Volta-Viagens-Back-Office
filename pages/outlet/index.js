@@ -80,8 +80,8 @@ function insertIntoTable(data) {
     const nameCell = newRow.insertCell(1);
     nameCell.innerHTML = outlet.name;
 
-    const emailCell = newRow.insertCell(2);
-    emailCell.innerHTML = outlet.address;
+    const addressCell = newRow.insertCell(2);
+    addressCell.innerHTML = outlet.address;
 
     const actionCell = newRow.insertCell(3);
     actionCell.innerHTML =`
@@ -165,7 +165,6 @@ async function updateOutlet() {
   
   const nameInputId = 'update-name';
   const addressInputId = 'update-address';
-  const typeInputId = 'update-type';
 
   const data = fetchFormData(nameInputId, addressInputId);
 

@@ -85,11 +85,11 @@ function insertIntoTable(data) {
     const nameCell = newRow.insertCell(1);
     nameCell.innerHTML = employee.name;
 
-    const emailCell = newRow.insertCell(2);
-    emailCell.innerHTML = employee.address;
+    const addressCell = newRow.insertCell(2);
+    addressCell.innerHTML = employee.address;
 
-    const departmentCell = newRow.insertCell(3);
-    departmentCell.innerHTML = employee.type;
+    const typeCell = newRow.insertCell(3);
+    typeCell.innerHTML = employee.type;
 
     const actionCell = newRow.insertCell(4);
     actionCell.innerHTML =`
