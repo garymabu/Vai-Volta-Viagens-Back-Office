@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Management System</title>
+  <script defer src="./index.js" type="module"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../style/default.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", Arial, Helvetica, sans-serif
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Gerenciamento de Funcionario</h1>
+    <form id="employeeForm">
+      <h2>Registrar Funcionário</h2>
+      <div class="form-inputs">
+        <div>
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="address">Endereço:</label>
+          <input type="text" id="address" name="address" required>
+        </div>
+        <div>
+          <label for="type">Tipo:</label>
+          <select id="type" name="type" required>
+            <option value="">Selecione um tipo</option>
+            <option value="Gerente de Ponto de Venda">Gerente de Ponto de Venda</option>
+            <option value="Gerente de Modais">Gerente de Modais</option>
+            <option value="HR">HR</option>
+            <option value="Operations">Operations</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="submit-button">
+        <input type="submit" value="Adicionar Funcionario">
+      </div>
+    </form>
+    
+    <table class="table" id="employeeTable">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Tipo</th>
+          <th>Código</th>
+          <th>Modelo</th>
+          <th>Capacidade</th>
+          <th>Fabricação</th>
+          <th>Companhia</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div class="update-popup-container" id="update">
+    <div class="update-form-container">
+      <h2>Atualizar Registro</h2>
+      <div class="update-inputs">
+        <input id="update-name" type="text" placeholder="Nome" />
+        <input id="update-address" type="text" placeholder="Endereço" />
+        <input id="update-type" type="text" placeholder="Tipo" />
+      </div>
+      <div class="update-button-container">
+        <button class="post-update-button">Atualizar</button>  
+        <button class="cancel-update-button">Cancelar</button>  
+      </div>
+    </div>
+  </div>
+  <div class="deletion-popup-container" id="delete">
+    <div class="deletion-container">
+      <p>Deseja realmente apagar o funcionário?</p>
+      <button class="confirm-deletion-button">Sim</button>  
+      <button class="cancel-deletion-button">Não</button>  
+    </div>
+  </div>
+</body>
+</html>
