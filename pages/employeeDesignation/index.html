@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Designação de Funcionário</title>
+  <script defer src="./index.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", Arial, Helvetica, sans-serif
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Designação de Funcionário</h1>
+    <form id="designation-form">
+      <h2>Designar Funcionário</h2>
+      <div class="form-inputs">
+        <div>
+          <label for="employeeId">Id do Funcionário:</label>
+          <input type="text" id="employeeId" name="employeeId" required>
+        </div>
+        <div>
+          <label for="outletId">Id do Ponto de Venda:</label>
+          <input type="text" id="outletId" name="outletId" required>
+        </div>
+      </div>
+      <div class="submit-button">
+        <input type="submit" value="Adicionar Funcionario">
+      </div>
+    </form>
+    
+    <table class="table" id="designation-table">
+      <thead>
+        <tr>
+          <th>Id da Relação</th>
+          <th>Id do Funcionário</th>
+          <th>Id do Ponto de Venda</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div class="update-popup-container" id="update" style="display: none;">
+    <div class="update-form-container">
+      <h2>Atualizar Registro</h2>
+      <div class="update-inputs">
+        <input id="update-name" type="text" placeholder="Nome" />
+        <input id="update-address" type="text" placeholder="Endereço" />
+      </div>
+      <div class="update-button-container">
+        <button class="post-update-button">Atualizar</button>  
+        <button class="cancel-update-button">Cancelar</button>  
+      </div>
+    </div>
+  </div>
+  <div class="deletion-popup-container" id="delete" style="display: none;">
+    <div class="deletion-container">
+      <p>Deseja realmente apagar o funcionário?</p>
+      <button class="confirm-deletion-button">Sim</button>  
+      <button class="cancel-deletion-button">Não</button>  
+    </div>
+  </div>
+</body>
+</html>

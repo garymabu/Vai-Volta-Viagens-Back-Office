@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Employee Management System</title>
+  <title>Sistema de Gerenciamento de Funcionário</title>
   <script defer src="./index.js" type="module"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -20,7 +20,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Sistema de Gerenciamento de Funcionario</h1>
+    <h1>Sistema de Gerenciamento de Funcionário</h1>
     <form id="employeeForm">
       <h2>Registrar Funcionário</h2>
       <div class="form-inputs">
@@ -36,14 +36,14 @@
           <label for="type">Tipo:</label>
           <select id="type" name="type" required>
             <option value="">Selecione um tipo</option>
-            <option value="Gerente de Ponto de Venda">Gerente</option>
-            <option value="Gerente de Modais">Gerente Virtual</option>
-            <option value="HR">Atendente</option>
-            <option value="Operations">Responsável por Cadastrar Funcionário</option>
-            <option value="Operations">Responsável por Registrar Viagens</option>
-            <option value="Operations">Responsável por Registrar Locais</option>
-            <option value="Operations">Responsável por Registrar Pontos de Venda</option>
-            <option value="Operations">Responsável por Registrar Modais</option>
+            <option value="Gerente">Gerente</option>
+            <option value="Gerente Virtual">Gerente Virtual</option>
+            <option value="Atendente">Atendente</option>
+            <option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
+            <option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
+            <option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
+            <option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
+            <option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
           </select>
         </div>
 
@@ -73,7 +73,17 @@
       <div class="update-inputs">
         <input id="update-name" type="text" placeholder="Nome" />
         <input id="update-address" type="text" placeholder="Endereço" />
-        <input id="update-type" type="text" placeholder="Tipo" />
+        <select id="type" name="type" required>
+          <option value="">Selecione um tipo</option>
+          <option value="Gerente">Gerente</option>
+          <option value="Gerente Virtual">Gerente Virtual</option>
+          <option value="Atendente">Atendente</option>
+          <option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
+          <option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
+          <option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
+          <option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
+          <option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
+        </select>
       </div>
       <div class="update-button-container">
         <button class="post-update-button">Atualizar</button>  
