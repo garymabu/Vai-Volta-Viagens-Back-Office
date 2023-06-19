@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Management System</title>
+  <script defer src="./index.js" type="module"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", Arial, Helvetica, sans-serif
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Aprovação de Reservas</h1>    
+    <table class="table" id="bookingTable">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Número</th>
+          <th>Tempo de Viagem</th>
+          <th>TipoId</th>
+          <th>Código</th>
+          <th>Escala</th>
+          <th>Data de Criação</th>
+          <th>Status</th>
+          <th>Valor</th>
+          <th>Origem Id</th>
+          <th>Destino Id</th>
+          <th>Cliente Id</th>
+          <th>Funcionário Id</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="approval-popup-container" id="approval" style="display: none;">
+    <div class="approval-container">
+      <p>Deseja realmente aprovar a reserva?</p>
+      <button class="confirm-approval-button">Sim</button>  
+      <button class="cancel-approval-button">Não</button>  
+    </div>
+  </div>
+  <div class="deletion-popup-container" id="cancel" style="display: none;">
+    <div class="deletion-container">
+      <p>Deseja realmente recusar a reserva?</p>
+      <button class="confirm-deletion-button">Sim</button>  
+      <button class="cancel-deletion-button">Não</button>  
+    </div>
+  </div>
+</body>
+</html>
