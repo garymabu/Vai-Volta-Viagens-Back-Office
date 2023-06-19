@@ -1,97 +1,170 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Trip Management System</title>
-  <script defer src="./index.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="../../style/default.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Raleway", Arial, Helvetica, sans-serif
-    }
-  </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- My CSS -->
+	<link rel="stylesheet" href="../../style/default.css">
+  <!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+
+	<title>Vai e Volta Viagens</title>
 </head>
-
 <body>
-  <div class="container">
-    <h1>Sistema de Gerenciamento de Viagens</h1>
-    <form id="tripForm">
-      <h2>Registrar Viagem</h2>
-      <div class="form-inputs">
-        <div class="input-row">
-          <label for="arrival">Hora de chegada:</label>
-          <input type="datetime-local" id="arrival" name="arrival" required>
-        </div>
-        <div class="input-row">
-          <label for="departure">Hora de saida:</label>
-          <input type="datetime-local" id="departure" name="departure" required>
-        </div>
-        <div>
-          <label for="origin">Origem:</label>
-          <select class="localization" id="origin" name="origin" required>
-            <option value="" selected disabled hidden>Escolha aqui</option>
-          </select>
-        </div>
-        <div>
-          <label for="destination">Destino:</label>
-          <select class="localization" id="destination" name="destination" required>
-            <option value="" selected disabled hidden>Escolha aqui</option>
-          </select>
-        </div>
-      </div>
-      <div class="submit-button">
-        <input type="submit" value="Adicionar Viagem">
-      </div>
-    </form>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<span>Vai e Volta Viagens</span>
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="/pages/employee/index.html">
+					<i class="fa-solid fa-user"></i>
+					<span class="text">Cadastro Funcionario</span>
+				</a>
+			</li>
+			<li >
+				<a href="/pages/modal/index.html">
+					<i class="fa-solid fa-bus"></i>
+					<span class="text">Cadastro Modais</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/outlet/index.html">
+					<i class="fa-solid fa-sack-dollar"></i>
+					<span class="text">Cadastro Ponto de Vendas</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/local/index.html">
+					<i class="fa-solid fa-map-location-dot"></i>
+					<span class="text">Cadastro Locais</span>
+				</a>
+			</li>
+      <li class="active">
+				<a href="#">
+					<i class="fa-solid fa-plane-departure"></i>
+					<span class="text">Cadastro Viagens</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/designationApproval/index.html">
+					<i class="fa-solid fa-person-circle-check"></i>
+					<span class="text">Aprovação de Designação</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/employeeDesignation/index.html">
+					<i class="fa-solid fa-users"></i>
+					<span class="text">Designação de Funcionário</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/approval/index.html">
+					<i class="fa-solid fa-thumbs-up"></i>
+					<span class="text">Aprovação de Reservas</span>
+				</a>
+			</li>
+      <li class="logout">
+        <a href="#">
+          <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="link">Logout</span>
+        </a>
+      </li>
+		</ul>
 
-    <table class="table" id="tripTable">
-      <thead>
-        <tr>
-          <th>Identificador</th>
-          <th>Hora de chegada</th>
-          <th>Hora de saida</th>
-          <th>Origem</th>
-          <th>Destino</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-  <div style="display: none" class="update-popup-container" id="update">
-    <form class="update-form-container">
-      <h2>Atualizar Registro</h2>
-      <div class="update-inputs">
-        <input id="update-arrival" type="text" placeholder="Chegada" required />
-        <input id="update-departure" type="text" placeholder="Saida" required />
-        <select class="localization" id="update-origin" placeholder="Origem" required>
-        </select>
-        <select class="localization" id="update-destination" placeholder="Destino" required>
-        </select>
-      </div>
-      <div class="update-button-container">
-        <button class="post-update-button">Atualizar</button>
-        <button class="cancel-update-button">Cancelar</button>
-      </div>
-    </form>
-  </div>
-  <div style="display: none" class="deletion-popup-container" id="delete">
-    <div class="deletion-container">
-      <p>Deseja realmente apagar a viagem?</p>
-      <button class="confirm-deletion-button">Sim</button>
-      <button class="cancel-deletion-button">Não</button>
-    </div>
-  </div>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Sistema de Gerenciamento de Viagens</h1>
+				</div>
+			</div>
+
+			<div class="table-data">
+        <div class="container">
+          <form id="tripForm">
+            <div class="form-inputs">
+              <div class="input-row">
+                <label for="arrival">Hora de chegada:</label>
+                <input type="datetime-local" id="arrival" name="arrival" required>
+              </div>
+              <div class="input-row">
+                <label for="departure">Hora de saida:</label>
+                <input type="datetime-local" id="departure" name="departure" required>
+              </div>
+              <div>
+                <label for="origin">Origem:</label>
+                <select class="localization" id="origin" name="origin" required>
+                  <option value="" selected disabled hidden>Escolha aqui</option>
+                </select>
+              </div>
+              <div>
+                <label for="destination">Destino:</label>
+                <select class="localization" id="destination" name="destination" required>
+                  <option value="" selected disabled hidden>Escolha aqui</option>
+                </select>
+              </div>
+            </div>
+            <div class="submit-button">
+              <input type="submit" value="Adicionar Viagem">
+            </div>
+          </form>
+      
+          <table class="table" id="tripTable">
+            <thead>
+              <tr>
+                <th>Identificador</th>
+                <th>Hora de chegada</th>
+                <th>Hora de saida</th>
+                <th>Origem</th>
+                <th>Destino</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div style="display: none" class="update-popup-container" id="update">
+          <form class="update-form-container">
+            <h2>Atualizar Registro</h2>
+            <div class="update-inputs">
+              <input id="update-arrival" type="text" placeholder="Chegada" required />
+              <input id="update-departure" type="text" placeholder="Saida" required />
+              <select class="localization" id="update-origin" placeholder="Origem" required>
+              </select>
+              <select class="localization" id="update-destination" placeholder="Destino" required>
+              </select>
+            </div>
+            <div class="update-button-container">
+              <button class="post-update-button">Atualizar</button>
+              <button class="cancel-update-button">Cancelar</button>
+            </div>
+          </form>
+        </div>
+        <div style="display: none" class="deletion-popup-container" id="delete">
+          <div class="deletion-container">
+            <p>Deseja realmente apagar a viagem?</p>
+            <button class="confirm-deletion-button">Sim</button>
+            <button class="cancel-deletion-button">Não</button>
+          </div>
+        </div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	<script src="index.js"></script>
+  <script src="../../js/default.js"></script>
+
 </body>
-
 </html>

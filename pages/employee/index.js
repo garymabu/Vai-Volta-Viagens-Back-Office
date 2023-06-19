@@ -8,17 +8,21 @@ document.querySelector('.cancel-update-button').onclick = toggleUpdateContainer;
 document.querySelector('.confirm-deletion-button').onclick = deleteEmployee;
 document.querySelector('.cancel-deletion-button').onclick = toggleConfirmationContainer;
 
-function fetchFormData(nameInputId, addressInputId, typeInputId) {
+function fetchFormData(nameInputId, addressInputId, typeInputId,loginInputId,passwordInputId) {
   const name = document.getElementById(nameInputId).value;
   const address = document.getElementById(addressInputId).value;
   const type = document.getElementById(typeInputId).value;
+  const login = document.getElementById(loginInputId).value;
+  const password = document.getElementById(passwordInputId).value;
 
   document.getElementById("employeeForm").reset();
 
   return {
     name,
     address,
-    type
+    type,
+    login,
+    password
   };
 }
 
@@ -45,26 +49,35 @@ async function fetchEmployees() {
       id: "130tbvg302t8",
       name: "Zeca Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
+      type: "Registrador de Modal",
+      login: "Zeca1234",
+      password: "1234"
     },
     {
-      id: "8230tbvg302t8",
-      name: "Mamou Gado",
+      id: "130tbvg302t8",
+      name: "Zeca Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
+      type: "Registrador de Modal",
+      login: "Zeca1234",
+      password: "1234"
     },
     {
-      id: "bvg302t8dethjk",
-      name: "Chupou Gado",
+      id: "130tbvg302t8",
+      name: "Zeca Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
+      type: "Registrador de Modal",
+      login: "Zeca1234",
+      password: "1234"
     },
     {
-      id: "wejkoprvyh4p",
-      name: "Fudeu Gado",
+      id: "130tbvg302t8",
+      name: "Zeca Gado",
       address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal"
+      type: "Registrador de Modal",
+      login: "Zeca1234",
+      password: "1234"
     },
+
   ];
 
   if (response.status === 200 && data.length) insertIntoTable(data);
@@ -91,7 +104,13 @@ function insertIntoTable(data) {
     const typeCell = newRow.insertCell(3);
     typeCell.innerHTML = employee.type;
 
-    const actionCell = newRow.insertCell(4);
+    const loginCell = newRow.insertCell(4);
+    loginCell.innerHTML = employee.login;
+
+    const passwordCell = newRow.insertCell(5);
+    passwordCell.innerHTML = employee.password;
+
+    const actionCell = newRow.insertCell(6);
     actionCell.innerHTML =`
       <div class="card-button-container">
         <button class="update-button" id="update-button-${index}" data-id="${employee.id}">Atualizar</button>
@@ -124,8 +143,10 @@ async function postFormData(event) {
   const nameInputId = 'name';
   const addressInputId = 'address';
   const typeInputId = 'type';
+  const loginInputId = 'login';
+  const passwordInputId = 'password';
 
-  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
+  const data = fetchFormData(nameInputId, addressInputId, typeInputId, loginInputId, passwordInputId);
 
   // TODO: Integration with backend
   const result = await fetch(
@@ -175,8 +196,10 @@ async function updateEmployee() {
   const nameInputId = 'update-name';
   const addressInputId = 'update-address';
   const typeInputId = 'update-type';
+  const loginInputId = 'update-login';
+  const passwordInputId = 'update-password';
 
-  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
+  const data = fetchFormData(nameInputId, addressInputId, typeInputId, loginInputId, passwordInputId);
 
   data.id = this.dataset.id;
 

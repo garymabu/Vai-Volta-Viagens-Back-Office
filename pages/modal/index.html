@@ -1,108 +1,186 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sistema de Gerenciamento de Modal</title>
-  <script defer src="./index.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Raleway", Arial, Helvetica, sans-serif
-    }
-  </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- My CSS -->
+	<link rel="stylesheet" href="../../style/default.css">
+
+    <!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+
+	<title>Vai e Volta Viagens</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Sistema de Gerenciamento de Modal</h1>
-    <form id="modal-form">
-      <h2>Registrar Funcionário</h2>
-      <div class="form-inputs">
-        <div>
-          <label for="type">Tipo:</label>
-          <input type="text" id="type" name="type" required autocomplete="on">
-        </div>
-        <div>
-          <label for="code">Código:</label>
-          <input type="text" id="code" name="code" required autocomplete="on">
-        </div>
-        <div>
-          <label for="model">Modelo:</label>
-          <input type="text" id="model" name="model" required autocomplete="on">
-        </div>
-        <div>
-          <label for="capacity">Capacidade:</label>
-          <input type="text" id="capacity" name="capacity" required autocomplete="on">
-        </div>
-        <div>
-          <label for="manufactureYear">Ano de Fabricação:</label>
-          <input type="text" id="manufactureYear" name="manufactureYear" required autocomplete="on">
-        </div>
-        <div>
-          <label for="company">Companhia:</label>
-          <input type="text" id="company" name="company" required autocomplete="on">
-        </div>
-        <div>
-          <label for="active">Ativo:</label>
-          <input type="checkbox" id="active" name="active">
-        </div>
-      </div>
-      <div class="submit-button">
-        <input type="submit" value="Adicionar Funcionario">
-      </div>
-    </form>
-    
-    <table class="table" id="modal-table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Tipo</th>
-          <th>Código</th>
-          <th>Modelo</th>
-          <th>Capacidade</th>
-          <th>Fabricação</th>
-          <th>Companhia</th>
-          <th>Ativo</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-  <div class="update-popup-container" id="update" style="display: none;">
-    <div class="update-form-container">
-      <h2>Atualizar Registro</h2>
-      <div class="update-inputs">
-        <input type="text" id="update-type" name="type" required autocomplete="on" placeholder="Tipo">
-        <input type="text" id="update-code" name="code" required autocomplete="on" placeholder="Código">
-        <input type="text" id="update-model" name="model" required autocomplete="on" placeholder="Modelo">
-        <input type="text" id="update-capacity" name="capacity" required autocomplete="on" placeholder="Capacidade">
-        <input type="text" id="update-manufactureYear" name="manufactureYear" required autocomplete="on" placeholder="Ano de Manufatura">
-        <input type="text" id="update-companyName" name="company" required autocomplete="on" placeholder="Companhia">
-        <div>
-          <label for="update-active">Ativo:</label>
-          <input type="checkbox" id="update-active" name="active">
-        </div>
-      </div>
-      <div class="update-button-container">
-        <button class="post-update-button">Atualizar</button>  
-        <button class="cancel-update-button">Cancelar</button>  
-      </div>
-    </div>
-  </div>
-  <div class="deletion-popup-container" id="delete" style="display: none;">
-    <div class="deletion-container">
-      <p>Deseja realmente apagar o modal?</p>
-      <button class="confirm-deletion-button">Sim</button>  
-      <button class="cancel-deletion-button">Não</button>  
-    </div>
-  </div>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<span>Vai e Volta Viagens</span>
+		</a>
+		<ul class="side-menu top">
+			<li >
+				<a href="/pages/employee/index.html">
+					<i class="fa-solid fa-user"></i>
+					<span class="text">Cadastro Funcionario</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="#">
+					<i class="fa-solid fa-bus"></i>
+					<span class="text">Cadastro Modais</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/outlet/index.html">
+					<i class="fa-solid fa-sack-dollar"></i>
+					<span class="text">Cadastro Ponto de Vendas</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/local/index.html">
+					<i class="fa-solid fa-map-location-dot"></i>
+					<span class="text">Cadastro Locais</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/trip/index.html">
+					<i class="fa-solid fa-plane-departure"></i>
+					<span class="text">Cadastro Viagens</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/designationApproval/index.html">
+					<i class="fa-solid fa-person-circle-check"></i>
+					<span class="text">Aprovação de Designação</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/employeeDesignation/index.html">
+					<i class="fa-solid fa-users"></i>
+					<span class="text">Designação de Funcionário</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/approval/index.html">
+					<i class="fa-solid fa-thumbs-up"></i>
+					<span class="text">Aprovação de Reservas</span>
+				</a>
+			</li>
+			<li class="logout">
+				<a href="#">
+				  <i class="fa-solid fa-right-from-bracket"></i>
+					<span class="link">Logout</span>
+				</a>
+			  </li>
+		</ul>
+
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Sistema de Gerenciamento de Modal</h1>
+				</div>
+			</div>
+
+			<div class="table-data">
+				<div class="container">
+					<form id="modal-form">
+					  <div class="form-inputs">
+						<div>
+						  <label for="type">Tipo:</label><br>
+						  <input type="text" id="type" name="type" required autocomplete="on">
+						</div>
+						<div>
+						  <label for="code">Código:</label>
+						  <input type="text" id="code" name="code" required autocomplete="on">
+						</div>
+						<div>
+						  <label for="model">Modelo:</label>
+						  <input type="text" id="model" name="model" required autocomplete="on">
+						</div>
+						<div>
+						  <label for="capacity">Capacidade:</label>
+						  <input type="text" id="capacity" name="capacity" required autocomplete="on">
+						</div>
+						<div>
+						  <label for="manufactureYear">Ano de Fabricação:</label>
+						  <input type="text" id="manufactureYear" name="manufactureYear" required autocomplete="on">
+						</div>
+						<div>
+						  <label for="company">Companhia:</label>
+						  <input type="text" id="company" name="company" required autocomplete="on">
+						</div>
+						<div>
+						  <label for="active">Ativo:</label>
+						  <input type="checkbox" id="active" name="active">
+						</div>
+					  </div>
+					  <div class="submit-button">
+						<input type="submit" value="Adicionar Funcionario">
+					  </div>
+					</form>
+					
+					<table class="table" id="modal-table">
+					  <thead>
+						<tr>
+						  <th>Id</th>
+						  <th>Tipo</th>
+						  <th>Código</th>
+						  <th>Modelo</th>
+						  <th>Capacidade</th>
+						  <th>Fabricação</th>
+						  <th>Companhia</th>
+						  <th>Ativo</th>
+						  <th>Ação</th>
+						</tr>
+					  </thead>
+					  <tbody>
+					  </tbody>
+					</table>
+				  </div>
+				  <div class="update-popup-container" id="update" style="display: none;">
+					<div class="update-form-container">
+					  <h2>Atualizar Registro</h2>
+					  <div class="update-inputs">
+						<input type="text" id="update-type" name="type" required autocomplete="on" placeholder="Tipo">
+						<input type="text" id="update-code" name="code" required autocomplete="on" placeholder="Código">
+						<input type="text" id="update-model" name="model" required autocomplete="on" placeholder="Modelo">
+						<input type="text" id="update-capacity" name="capacity" required autocomplete="on" placeholder="Capacidade">
+						<input type="text" id="update-manufactureYear" name="manufactureYear" required autocomplete="on" placeholder="Ano de Manufatura">
+						<input type="text" id="update-companyName" name="company" required autocomplete="on" placeholder="Companhia">
+						<div>
+						  <label for="update-active">Ativo:</label>
+						  <input type="checkbox" id="update-active" name="active">
+						</div>
+					  </div>
+					  <div class="update-button-container">
+						<button class="post-update-button">Atualizar</button>  
+						<button class="cancel-update-button">Cancelar</button>  
+					  </div>
+					</div>
+				  </div>
+				  <div class="deletion-popup-container" id="delete" style="display: none;">
+					<div class="deletion-container">
+					  <p>Deseja realmente apagar o modal?</p>
+					  <button class="confirm-deletion-button">Sim</button>  
+					  <button class="cancel-deletion-button">Não</button>  
+					</div>
+				  </div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	<script src="index.js"></script>
+	<script src="../../js/default.js"></script>
+
 </body>
 </html>

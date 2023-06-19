@@ -1,102 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sistema de Gerenciamento de Funcionário</title>
-  <script defer src="./index.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Raleway", Arial, Helvetica, sans-serif
-    }
-  </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- My CSS -->
+	<link rel="stylesheet" href="../../style/default.css">
+
+    <!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+
+	<title>Vai e Volta Viagens</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Sistema de Gerenciamento de Funcionário</h1>
-    <form id="employeeForm">
-      <h2>Registrar Funcionário</h2>
-      <div class="form-inputs">
-        <div>
-          <label for="name">Nome:</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-          <label for="address">Endereço:</label>
-          <input type="text" id="address" name="address" required>
-        </div>
-        <div>
-          <label for="type">Tipo:</label>
-          <select id="type" name="type" required>
-            <option value="">Selecione um tipo</option>
-            <option value="Gerente">Gerente</option>
-            <option value="Gerente Virtual">Gerente Virtual</option>
-            <option value="Atendente">Atendente</option>
-            <option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
-            <option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
-            <option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
-            <option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
-            <option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
-          </select>
-        </div>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<span>Vai e Volta Viagens</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="/pages/employee/index.html">
+					<i class="fa-solid fa-user"></i>
+					<span class="text">Cadastro Funcionario</span>
+				</a>
+			</li>
+			<li >
+				<a href="/pages/modal/index.html">
+					<i class="fa-solid fa-bus"></i>
+					<span class="text">Cadastro Modais</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pages/outlet/index.html">
+					<i class="fa-solid fa-sack-dollar"></i>
+					<span class="text">Cadastro Ponto de Vendas</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/outlet/index.html">
+					<i class="fa-solid fa-map-location-dot"></i>
+					<span class="text">Cadastro Locais</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/trip/index.html">
+					<i class="fa-solid fa-plane-departure"></i>
+					<span class="text">Cadastro Viagens</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/designationApproval/index.html">
+					<i class="fa-solid fa-person-circle-check"></i>
+					<span class="text">Aprovação de Designação</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/employeeDesignation/index.html">
+					<i class="fa-solid fa-users"></i>
+					<span class="text">Designação de Funcionário</span>
+				</a>
+			</li>
+      <li>
+				<a href="/pages/approval/index.html">
+					<i class="fa-solid fa-thumbs-up"></i>
+					<span class="text">Aprovação de Reservas</span>
+				</a>
+			</li>
+      <li class="logout">
+        <a href="#">
+          <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="link">Logout</span>
+        </a>
+      </li>
+		</ul>
 
-      </div>
-      <div class="submit-button">
-        <input type="submit" value="Adicionar Funcionario">
-      </div>
-    </form>
-    
-    <table class="table" id="employeeTable">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Nome</th>
-          <th>Endereço</th>
-          <th>Tipo</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-  <div class="update-popup-container" id="update" style="display: none;">
-    <div class="update-form-container">
-      <h2>Atualizar Registro</h2>
-      <div class="update-inputs">
-        <input id="update-name" type="text" placeholder="Nome" />
-        <input id="update-address" type="text" placeholder="Endereço" />
-        <select id="type" name="type" required>
-          <option value="">Selecione um tipo</option>
-          <option value="Gerente">Gerente</option>
-          <option value="Gerente Virtual">Gerente Virtual</option>
-          <option value="Atendente">Atendente</option>
-          <option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
-          <option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
-          <option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
-          <option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
-          <option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
-        </select>
-      </div>
-      <div class="update-button-container">
-        <button class="post-update-button">Atualizar</button>  
-        <button class="cancel-update-button">Cancelar</button>  
-      </div>
-    </div>
-  </div>
-  <div class="deletion-popup-container" id="delete" style="display: none;">
-    <div class="deletion-container">
-      <p>Deseja realmente apagar o funcionário?</p>
-      <button class="confirm-deletion-button">Sim</button>  
-      <button class="cancel-deletion-button">Não</button>  
-    </div>
-  </div>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Sistema de Gerenciamento de Funcionário</h1>
+				</div>
+			</div>
+      
+			<div class="table-data">
+				<div class="container">
+					<form id="employeeForm">
+					  <div class="form-inputs">
+						<div>
+						  <label for="name">Nome:</label>
+						  <input type="text" id="name" name="name" required>
+						</div>
+						<div>
+						  <label for="address">Endereço:</label>
+						  <input type="text" id="address" name="address" required>
+						</div>
+						<div>
+						  <label for="type">Tipo:</label><br>
+						  <select id="type" name="type" required>
+							<option value="">Selecione um tipo</option>
+							<option value="Gerente">Gerente</option>
+							<option value="Gerente Virtual">Gerente Virtual</option>
+							<option value="Atendente">Atendente</option>
+							<option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
+							<option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
+							<option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
+							<option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
+							<option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
+						  </select>
+						</div>
+            <div>
+              <label for="login">Login:</label><br>
+              <input type="text" id="login" name="login" required>
+            </div>
+            <div>
+              <label for="password">Senha:</label><br>
+              <input type="text" id="password" name="password" required>
+            </div>
+					  </div>
+					  <div class="submit-button">
+						<input type="submit" value="Adicionar Funcionario">
+					  </div>
+					</form>
+					
+					<table class="table" id="employeeTable">
+					  <thead>
+						<tr>
+						  <th>Id</th>
+						  <th>Nome</th>
+						  <th>Endereço</th>
+						  <th>Tipo</th>
+              <th>Login</th>
+              <th>Senha</th>
+						  <th>Ação</th>
+						</tr>
+					  </thead>
+					  <tbody>
+					  </tbody>
+					</table>
+				  </div>
+				  <div class="update-popup-container" id="update" style="display: none;">
+					<div class="update-form-container">
+					  <h2>Atualizar Registro</h2>
+					  <div class="update-inputs">
+						<input id="update-name" type="text" placeholder="Nome" />
+						<input id="update-address" type="text" placeholder="Endereço" />
+						<select id="type" name="type" required>
+						  <option value="">Selecione um tipo</option>
+						  <option value="Gerente">Gerente</option>
+						  <option value="Gerente Virtual">Gerente Virtual</option>
+						  <option value="Atendente">Atendente</option>
+						  <option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
+						  <option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
+						  <option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
+						  <option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
+						  <option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
+						</select>
+					  </div>
+					  <div class="update-button-container">
+						<button class="post-update-button">Atualizar</button>  
+						<button class="cancel-update-button">Cancelar</button>  
+					  </div>
+					</div>
+				  </div>
+				  <div class="deletion-popup-container" id="delete" style="display: none;">
+					<div class="deletion-container">
+					  <p>Deseja realmente apagar o funcionário?</p>
+					  <button class="confirm-deletion-button">Sim</button>  
+					  <button class="cancel-deletion-button">Não</button>  
+					</div>
+				  </div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	<script src="index.js"></script>
+  <script src="../../js/default.js"></script>
+
 </body>
 </html>

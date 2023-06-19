@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>VVV | Portal</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <div class="center">
+      <h1> <i class="fa-solid fa-truck-plane"></i>Vai e Volta Viagens</h1>
+      <form method="post" onsubmit="event.preventDefault(); FetchLoginAndPostLoginData();">
+        <div class="txt_field">
+          <input type="text" id="Username" required />
+          <span></span>
+          <label>Usuario</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" id="SenhaLogin" required />
+          <span></span>
+          <label>Senha</label>
+        </div>
+        <input type="submit" value="Login"/>
+      </form>
+    </div>
+  </body>
+</html>
