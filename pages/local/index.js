@@ -1,30 +1,30 @@
 const homeDomain = 'http://localhost:8080';
 
-fetchOutlets();
+fetchLocals();
 
-document.getElementById("outlet-form").addEventListener("submit", postFormData);
-document.querySelector('.post-update-button').onclick = updateOutlet;
+document.getElementById("local-form").addEventListener("submit", postFormData);
+document.querySelector('.post-update-button').onclick = updateLocal;
 document.querySelector('.cancel-update-button').onclick = toggleUpdateContainer;
-document.querySelector('.confirm-deletion-button').onclick = deleteOutlet;
+document.querySelector('.confirm-deletion-button').onclick = deleteLocal;
 document.querySelector('.cancel-deletion-button').onclick = toggleConfirmationContainer;
 
-function fetchFormData(nameInputId, addressInputId) {
+function fetchFormData(cityInputId, airportInputId) {
   
-  const name = document.getElementById(nameInputId).value;
-  const address = document.getElementById(addressInputId).value;
+  const city = document.getElementById(cityInputId).value;
+  const airport = document.getElementById(airportInputId).value;
   
-  document.getElementById("outlet-form").reset();
+  document.getElementById("local-form").reset();
 
   return {
-    name,
-    address
+    city,
+    airport
   };
 }
 
-async function fetchOutlets() {
+async function fetchLocals() {
 
   // TODO: Integration with backend
-  // const response = await fetch(`${homeDomain}/v1/Outlet`,
+  // const response = await fetch(`${homeDomain}/v1/Local`,
     // {
     //   method: 'POST',
     //   headers: {
@@ -42,23 +42,23 @@ async function fetchOutlets() {
   const data = [
     {
       id: "130tbvg302t8",
-      name: "Zeca Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      city: "RJ",
+      airport: "GIG",
     },
     {
       id: "8230tbvg302t8",
-      name: "Mamou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      city: "RJ",
+      airport: "GIG",
     },
     {
       id: "bvg302t8dethjk",
-      name: "Chupou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      city: "RJ",
+      airport: "GIG",
     },
     {
       id: "wejkoprvyh4p",
-      name: "Fudeu Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      city: "RJ",
+      airport: "GIG",
     },
   ];
 
@@ -67,27 +67,27 @@ async function fetchOutlets() {
 
 }
 
-// Function to add Outlet to the table
+// Function to add Local to the table
 function insertIntoTable(data) {
 
-  data.forEach((outlet, index) => {
-    const tableBody = document.getElementById("outlet-table").getElementsByTagName("tbody")[0];
+  data.forEach((local, index) => {
+    const tableBody = document.getElementById("local-table").getElementsByTagName("tbody")[0];
     const newRow = tableBody.insertRow();
 
     const idCell = newRow.insertCell(0);
-    idCell.innerHTML = outlet.id;
+    idCell.innerHTML = local.id;
 
-    const nameCell = newRow.insertCell(1);
-    nameCell.innerHTML = outlet.name;
+    const cityCell = newRow.insertCell(1);
+    cityCell.innerHTML = local.city;
 
-    const addressCell = newRow.insertCell(2);
-    addressCell.innerHTML = outlet.address;
+    const airportCell = newRow.insertCell(2);
+    airportCell.innerHTML = local.airport;
 
     const actionCell = newRow.insertCell(3);
     actionCell.innerHTML =`
       <div class="card-button-container">
-        <button class="update-button" id="update-button-${index}" data-id="${outlet.id}">Atualizar</button>
-        <button class="delete-button" id="delete-button-${index}" data-id="${outlet.id}">Apagar</button>
+        <button class="update-button" id="update-button-${index}" data-id="${local.id}">Atualizar</button>
+        <button class="delete-button" id="delete-button-${index}" data-id="${local.id}">Apagar</button>
       </div>
     `
     document.getElementById(`update-button-${index}`).addEventListener('click', toggleUpdateContainer);
@@ -97,7 +97,7 @@ function insertIntoTable(data) {
 }
 
 function insertEmptyMessage() {
-  const tableBody = document.getElementById("outlet-table");
+  const tableBody = document.getElementById("local-table");
 
   
   const html = `
@@ -113,14 +113,14 @@ function insertEmptyMessage() {
 async function postFormData(event) {
   event.preventDefault();
 
-  const nameInputId = 'name';
-  const addressInputId = 'address';
+  const cityInputId = 'city';
+  const airportInputId = 'airport';
 
-  const data = fetchFormData(nameInputId, addressInputId);
+  const data = fetchFormData(cityInputId, airportInputId);
 
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/outlet`,
+    `${homeDomain}/v1/local`,
     {
       method: 'POST',
       headers: {
@@ -161,18 +161,18 @@ function toggleConfirmationContainer() {
   else deleteContainer.style.display = "none";
 }
 
-async function updateOutlet() {
+async function updateLocal() {
   
-  const nameInputId = 'update-name';
-  const addressInputId = 'update-address';
+  const cityInputId = 'update-city';
+  const airportInputId = 'update-airport';
 
-  const data = fetchFormData(nameInputId, addressInputId);
+  const data = fetchFormData(cityInputId, airportInputId);
 
   data.id = this.dataset.id;
 
     // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/outlet/update`,
+    `${homeDomain}/v1/local/update`,
     {
       method: 'POST',
       headers: {
@@ -189,13 +189,13 @@ async function updateOutlet() {
   }
 }
 
-async function deleteOutlet() {
+async function deleteLocal() {
   const data = {
     id: this.dataset.id
   };
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/outlet/update`,
+    `${homeDomain}/v1/local/update`,
     {
       method: 'POST',
       headers: {

@@ -1,30 +1,31 @@
 const homeDomain = 'http://localhost:8080';
 
-fetchOutlets();
+fetchDesignations();
 
-document.getElementById("outlet-form").addEventListener("submit", postFormData);
-document.querySelector('.post-update-button').onclick = updateOutlet;
+document.getElementById("designation-form").addEventListener("submit", postFormData);
+document.querySelector('.post-update-button').onclick = updateDesignation;
 document.querySelector('.cancel-update-button').onclick = toggleUpdateContainer;
-document.querySelector('.confirm-deletion-button').onclick = deleteOutlet;
+document.querySelector('.confirm-deletion-button').onclick = deleteDesignation;
 document.querySelector('.cancel-deletion-button').onclick = toggleConfirmationContainer;
 
-function fetchFormData(nameInputId, addressInputId) {
-  
-  const name = document.getElementById(nameInputId).value;
-  const address = document.getElementById(addressInputId).value;
-  
-  document.getElementById("outlet-form").reset();
+function fetchFormData(employeeIdInputId, outletIdInputId, statusInputId) {
+  const employeeId = document.getElementById(employeeIdInputId).value;
+  const outletId = document.getElementById(outletIdInputId).value;
+  const status = document.getElementById(statusInputId).value;
+
+  document.getElementById("designationForm").reset();
 
   return {
-    name,
-    address
+    employeeId,
+    outletId,
+    status
   };
 }
 
-async function fetchOutlets() {
+async function fetchDesignations() {
 
   // TODO: Integration with backend
-  // const response = await fetch(`${homeDomain}/v1/Outlet`,
+  // const response = await fetch(`${homeDomain}/v1/designation`,
     // {
     //   method: 'POST',
     //   headers: {
@@ -42,23 +43,33 @@ async function fetchOutlets() {
   const data = [
     {
       id: "130tbvg302t8",
-      name: "Zeca Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      designationId: "Zeca Gado",
+      outletId: "Rua da Macumba, 123, Rio de Janeiro",
+      status: "Registrador de Modal"
     },
     {
-      id: "8230tbvg302t8",
-      name: "Mamou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      id: "130tbvg302t8",
+      designationId: "Zeca Gado",
+      outletId: "Rua da Macumba, 123, Rio de Janeiro",
+      status: "Registrador de Modal"
     },
     {
-      id: "bvg302t8dethjk",
-      name: "Chupou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      id: "130tbvg302t8",
+      designationId: "Zeca Gado",
+      outletId: "Rua da Macumba, 123, Rio de Janeiro",
+      status: "Registrador de Modal"
     },
     {
-      id: "wejkoprvyh4p",
-      name: "Fudeu Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
+      id: "130tbvg302t8",
+      designationId: "Zeca Gado",
+      outletId: "Rua da Macumba, 123, Rio de Janeiro",
+      status: "Registrador de Modal"
+    },
+    {
+      id: "130tbvg302t8",
+      designationId: "Zeca Gado",
+      outletId: "Rua da Macumba, 123, Rio de Janeiro",
+      status: "Registrador de Modal"
     },
   ];
 
@@ -67,27 +78,31 @@ async function fetchOutlets() {
 
 }
 
-// Function to add Outlet to the table
+
+// Function to add designation to the table
 function insertIntoTable(data) {
 
-  data.forEach((outlet, index) => {
-    const tableBody = document.getElementById("outlet-table").getElementsByTagName("tbody")[0];
+  data.forEach((designation, index) => {
+    const tableBody = document.getElementById("designation-table").getElementsByTagName("tbody")[0];
     const newRow = tableBody.insertRow();
 
     const idCell = newRow.insertCell(0);
-    idCell.innerHTML = outlet.id;
+    idCell.innerHTML = designation.id;
 
-    const nameCell = newRow.insertCell(1);
-    nameCell.innerHTML = outlet.name;
+    const designationIdCell = newRow.insertCell(1);
+    designationIdCell.innerHTML = designation.designationId;
 
-    const addressCell = newRow.insertCell(2);
-    addressCell.innerHTML = outlet.address;
+    const outletIdCell = newRow.insertCell(2);
+    outletIdCell.innerHTML = designation.outletId;
 
-    const actionCell = newRow.insertCell(3);
+    const statusCell = newRow.insertCell(3);
+    statusCell.innerHTML = designation.status;
+
+    const actionCell = newRow.insertCell(4);
     actionCell.innerHTML =`
       <div class="card-button-container">
-        <button class="update-button" id="update-button-${index}" data-id="${outlet.id}">Atualizar</button>
-        <button class="delete-button" id="delete-button-${index}" data-id="${outlet.id}">Apagar</button>
+        <button class="update-button" id="update-button-${index}" data-id="${designation.id}">Atualizar</button>
+        <button class="delete-button" id="delete-button-${index}" data-id="${designation.id}">Apagar</button>
       </div>
     `
     document.getElementById(`update-button-${index}`).addEventListener('click', toggleUpdateContainer);
@@ -97,30 +112,30 @@ function insertIntoTable(data) {
 }
 
 function insertEmptyMessage() {
-  const tableBody = document.getElementById("outlet-table");
+  const tableBody = document.getElementById("designationTable");
 
   
   const html = `
     <div class="card" id="card">
-      <p>Sem pontos de venda cadastrados.</p>
+      <p>Sem designações cadastradas.</p>
     </div>
   `;
   tableBody.insertAdjacentHTML('afterend', html)
 }
 
 // Event listeners
-
 async function postFormData(event) {
   event.preventDefault();
 
   const nameInputId = 'name';
   const addressInputId = 'address';
+  const typeInputId = 'type';
 
-  const data = fetchFormData(nameInputId, addressInputId);
+  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
 
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/outlet`,
+    `${homeDomain}/v1/designation`,
     {
       method: 'POST',
       headers: {
@@ -161,18 +176,19 @@ function toggleConfirmationContainer() {
   else deleteContainer.style.display = "none";
 }
 
-async function updateOutlet() {
+async function updateDesignation() {
   
-  const nameInputId = 'update-name';
-  const addressInputId = 'update-address';
+  const employeeIdInputId = 'update-name';
+  const outletIdInputId = 'update-address';
+  const statusInputId = 'update-type';
 
-  const data = fetchFormData(nameInputId, addressInputId);
+  const data = fetchFormData(employeeIdInputId, outletIdInputId, statusInputId);
 
   data.id = this.dataset.id;
 
     // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/outlet/update`,
+    `${homeDomain}/v1/designation/update`,
     {
       method: 'POST',
       headers: {
@@ -189,13 +205,13 @@ async function updateOutlet() {
   }
 }
 
-async function deleteOutlet() {
+async function deleteDesignation() {
   const data = {
     id: this.dataset.id
   };
   // TODO: Integration with backend
   const result = await fetch(
-    `${homeDomain}/v1/outlet/update`,
+    `${homeDomain}/v1/designation/update`,
     {
       method: 'POST',
       headers: {

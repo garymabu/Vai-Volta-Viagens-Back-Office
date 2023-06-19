@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Employee Management System</title>
-  <script defer src="./index.js" type="module"></script>
+  <title>Sistema de Gerenciamento de Funcionário</title>
+  <script defer src="./index.js"></script>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="../../style/default.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
@@ -21,7 +20,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Sistema de Gerenciamento de Funcionario</h1>
+    <h1>Sistema de Gerenciamento de Funcionário</h1>
     <form id="employeeForm">
       <h2>Registrar Funcionário</h2>
       <div class="form-inputs">
@@ -37,10 +36,14 @@
           <label for="type">Tipo:</label>
           <select id="type" name="type" required>
             <option value="">Selecione um tipo</option>
-            <option value="Gerente de Ponto de Venda">Gerente de Ponto de Venda</option>
-            <option value="Gerente de Modais">Gerente de Modais</option>
-            <option value="HR">HR</option>
-            <option value="Operations">Operations</option>
+            <option value="Gerente">Gerente</option>
+            <option value="Gerente Virtual">Gerente Virtual</option>
+            <option value="Atendente">Atendente</option>
+            <option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
+            <option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
+            <option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
+            <option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
+            <option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
           </select>
         </div>
 
@@ -64,13 +67,23 @@
       </tbody>
     </table>
   </div>
-  <div class="update-popup-container" id="update">
+  <div class="update-popup-container" id="update" style="display: none;">
     <div class="update-form-container">
       <h2>Atualizar Registro</h2>
       <div class="update-inputs">
         <input id="update-name" type="text" placeholder="Nome" />
         <input id="update-address" type="text" placeholder="Endereço" />
-        <input id="update-type" type="text" placeholder="Tipo" />
+        <select id="type" name="type" required>
+          <option value="">Selecione um tipo</option>
+          <option value="Gerente">Gerente</option>
+          <option value="Gerente Virtual">Gerente Virtual</option>
+          <option value="Atendente">Atendente</option>
+          <option value="Responsável por Cadastrar Funcionário">Responsável por Cadastrar Funcionário</option>
+          <option value="Responsável por Registrar Viagens">Responsável por Registrar Viagens</option>
+          <option value="Responsável por Registrar Locais">Responsável por Registrar Locais</option>
+          <option value="Responsável por Registrar Pontos de Venda">Responsável por Registrar Pontos de Venda</option>
+          <option value="Responsável por Registrar Modais">Responsável por Registrar Modais</option>
+        </select>
       </div>
       <div class="update-button-container">
         <button class="post-update-button">Atualizar</button>  
@@ -78,7 +91,7 @@
       </div>
     </div>
   </div>
-  <div class="deletion-popup-container" id="delete">
+  <div class="deletion-popup-container" id="delete" style="display: none;">
     <div class="deletion-container">
       <p>Deseja realmente apagar o funcionário?</p>
       <button class="confirm-deletion-button">Sim</button>  

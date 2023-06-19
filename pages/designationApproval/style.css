@@ -9,7 +9,7 @@ h1 {
 }
 
 .container {
-  max-width: 50rem;
+  max-width: 62.5rem;
   margin: 0 auto;
 }
 
@@ -18,18 +18,6 @@ form {
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 5px;
-}
-
-.form-inputs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 1rem;
-  row-gap: 1em;
-  margin-bottom: 10px;
-}
-
-.submit-button {
-  justify-self: end;
 }
 
 input[type="text"],
@@ -43,12 +31,12 @@ select {
 }
 
 input[type="submit"],
-.update-button,
-.delete-button,
-.post-update-button,
-.cancel-update-button,
-.cancel-deletion-button,
-.confirm-deletion-button {
+.approval-button,
+.refusal-button,
+.confirm-approval-button,
+.cancel-approval-button,
+.cancel-refusal-button,
+.confirm-refusal-button {
   background-color: #eb5555;
   color: white;
   padding: 10px 20px;
@@ -75,15 +63,15 @@ input[type="submit"],
   color: white;
 }
 
-.card-button-container {
+.table-button-container {
   display: grid;
   width: 100%;
   grid-template-columns: 50% 50%;
   justify-items: center;
 }
 
-.update-popup-container,
-.deletion-popup-container {
+.approval-popup-container,
+.refusal-popup-container {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
@@ -94,7 +82,7 @@ input[type="submit"],
   transform: translate(-50%, -50%);
 }
 
-.update-form-container {
+.approval-form-container {
   display: grid;
   grid-template-rows: 3rem 17rem 3rem;
   width: 25rem; 
@@ -108,19 +96,8 @@ input[type="submit"],
   align-items: center;
 }
 
-.update-inputs {
-  display: grid;
-  justify-self: center;
-  grid-template-rows: 3.5rem 3.5rem;
-  grid-template-columns: 23rem;
-}
-
-.update-button-container {
-  justify-self: end;
-  padding-bottom: 1rem;
-}
-
-.deletion-container {
+.approval-container,
+.refusal-container {
   padding: 20px;
   background-color: rgb(235, 233, 233);
   position: absolute;
