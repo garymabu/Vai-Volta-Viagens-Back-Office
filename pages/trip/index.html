@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Trip Management System</title>
+  <script defer src="./index.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../style/default.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", Arial, Helvetica, sans-serif
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Sistema de Gerenciamento de Viagens</h1>
+    <form id="tripForm">
+      <h2>Registrar Viagem</h2>
+      <div class="form-inputs">
+        <div class="input-row">
+          <label for="arrival">Hora de chegada:</label>
+          <input type="datetime-local" id="arrival" name="arrival" required>
+        </div>
+        <div class="input-row">
+          <label for="departure">Hora de saida:</label>
+          <input type="datetime-local" id="departure" name="departure" required>
+        </div>
+        <div>
+          <label for="origin">Origem:</label>
+          <select class="localization" id="origin" name="origin" required>
+            <option value="" selected disabled hidden>Escolha aqui</option>
+          </select>
+        </div>
+        <div>
+          <label for="destination">Destino:</label>
+          <select class="localization" id="destination" name="destination" required>
+            <option value="" selected disabled hidden>Escolha aqui</option>
+          </select>
+        </div>
+      </div>
+      <div class="submit-button">
+        <input type="submit" value="Adicionar Viagem">
+      </div>
+    </form>
+
+    <table class="table" id="tripTable">
+      <thead>
+        <tr>
+          <th>Identificador</th>
+          <th>Hora de chegada</th>
+          <th>Hora de saida</th>
+          <th>Origem</th>
+          <th>Destino</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div style="display: none" class="update-popup-container" id="update">
+    <form class="update-form-container">
+      <h2>Atualizar Registro</h2>
+      <div class="update-inputs">
+        <input id="update-arrival" type="text" placeholder="Chegada" required />
+        <input id="update-departure" type="text" placeholder="Saida" required />
+        <select class="localization" id="update-origin" placeholder="Origem" required>
+        </select>
+        <select class="localization" id="update-destination" placeholder="Destino" required>
+        </select>
+      </div>
+      <div class="update-button-container">
+        <button class="post-update-button">Atualizar</button>
+        <button class="cancel-update-button">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  <div style="display: none" class="deletion-popup-container" id="delete">
+    <div class="deletion-container">
+      <p>Deseja realmente apagar a viagem?</p>
+      <button class="confirm-deletion-button">Sim</button>
+      <button class="cancel-deletion-button">Não</button>
+    </div>
+  </div>
+</body>
+
+</html>

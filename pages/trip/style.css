@@ -1,0 +1,33 @@
+.input-row {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="datetime-local"] {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.update-popup-container select {
+  width: 96%;
+  height: 46px;
+}
+
+.update-popup-container input {
+  width: 90%;
+}
+
+.update-button {
+  padding-right: 5px;
+  margin-right: 5px;
+}
+
+.card-button-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 52% 50% !important;
+  justify-items: center;
+}
