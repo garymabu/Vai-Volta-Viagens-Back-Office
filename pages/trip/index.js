@@ -6,7 +6,7 @@ let selectedTripId = undefined;
 fetchAndInsertTrips();
 
 fetchAndInsertDestinations();
-document.querySelector(".post-update-button").onclick = updateEmployee;
+document.querySelector(".post-update-button").onclick = updateTrip;
 document.querySelector(".cancel-update-button").onclick = toggleUpdateContainer;
 document.querySelector(".cancel-deletion-button").onclick =
   toggleConfirmationContainer;
@@ -54,12 +54,15 @@ function insertIntoTable(trips) {
     horaSaidaCell.innerHTML = trip.departureDatetime;
 
     const destinoCell = newRow.insertCell(3);
-    destinoCell.innerHTML = trip.departureLocalization.cityId;
+    destinoCell.innerHTML = trip.departureLocalization.cityName;
 
     const chegadaCell = newRow.insertCell(4);
-    chegadaCell.innerHTML = trip.arrivalLocalization.cityId;
+    chegadaCell.innerHTML = trip.arrivalLocalization.cityName;
 
-    const actionCell = newRow.insertCell(5);
+    const valorCell = newRow.insertCell(5);
+    valorCell.innerHTML = `R$ ${trip.tripValue}`;
+
+    const actionCell = newRow.insertCell(6);
     actionCell.innerHTML = `
       <div class="card-button-container">
         <button onclick="toggleUpdateContainer('${trip.id}')" class="update-button" id="update-button-${index}" data-id="${trip.id}">Atualizar</button>
@@ -70,22 +73,31 @@ function insertIntoTable(trips) {
 }
 
 async function fetchAndInsertDestinations() {
-  const response = { status: 200 };
+  // const response = { status: 200 };
 
-  const data = [
-    {
-      id: "40a8feb1-0049-42a0-9c5f-700f6e6dc8cf",
-      city: {
-        identificador: "São Paulo",
-      },
+  // const data = [
+  //   {
+  //     id: "40a8feb1-0049-42a0-9c5f-700f6e6dc8cf",
+  //     city: {
+  //       identificador: "São Paulo",
+  //     },
+  //   },
+  //   {
+  //     id: "00fef623-007c-407c-8d0a-d47628882eef",
+  //     city: {
+  //       identificador: "Rio de Janeiro",
+  //     },
+  //   },
+  // ];
+  const response = await fetch(`${homeDomain}/v1/localization?size=100`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    {
-      id: "00fef623-007c-407c-8d0a-d47628882eef",
-      city: {
-        identificador: "Rio de Janeiro",
-      },
-    },
-  ];
+  });
+  const data = (await response.json()).content;
 
   if (response.status === 200 && data.length)
     insertLocalesIntoLocalizationSelects(data);
@@ -98,7 +110,7 @@ async function insertLocalesIntoLocalizationSelects(locale) {
     locale.forEach((locale) => {
       const option = document.createElement("option");
       option.value = locale.id;
-      option.innerHTML = locale.city.identificador;
+      option.innerHTML = locale.cityName;
       select.appendChild(option);
     });
   });
@@ -135,6 +147,7 @@ async function fetchTripDataAndUpdateModal(id) {
     trip.departureLocalization.id;
   document.querySelector("#update-destination").value =
     trip.arrivalLocalization.id;
+  document.querySelector("#update-value").value = trip.tripValue;
 }
 
 function setGlobalIdAndToggleConfirmationModal(id) {
@@ -162,21 +175,23 @@ function toggleConfirmationContainer() {
   } else deleteContainer.style.display = "none";
 }
 
-async function updateEmployee() {
-  const nameInputId = "update-name";
-  const addressInputId = "update-address";
-  const typeInputId = "update-type";
-
-  const data = fetchFormData(nameInputId, addressInputId, typeInputId);
-
-  data.id = this.dataset.id;
-
+async function updateTrip(e) {
+  e.preventDefault();
+  const id = document.querySelector(".post-update-button").dataset.id;
+  const data = {
+    arrivalDatetime: document.querySelector("#update-arrival").value,
+    departureDatetime: document.querySelector("#update-departure").value,
+    departureLocalizationId: document.querySelector("#update-origin").value,
+    arrivalLocalizationId: document.querySelector("#update-destination").value,
+    tripValue: Number(document.querySelector("#update-value").value),
+  };
   // TODO: Integration with backend
-  const result = await fetch(`${homeDomain}/v1/trip`, {
+  const result = await fetch(`${homeDomain}/v1/trip/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   });
@@ -208,12 +223,14 @@ async function createTrip() {
   const departureDatetime = document.querySelector("#departure").value;
   const departureLocalizationId = document.querySelector("#origin").value;
   const arrivalLocalizationId = document.querySelector("#destination").value;
+  const tripValue = document.querySelector("#value").value;
 
   const data = {
     arrivalDatetime,
     departureDatetime,
     departureLocalizationId,
     arrivalLocalizationId,
+    tripValue,
   };
 
   const result = await fetch(`${homeDomain}/v1/trip`, {

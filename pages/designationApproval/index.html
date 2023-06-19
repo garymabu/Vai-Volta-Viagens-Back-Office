@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Boxicons -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- My CSS -->
 	<link rel="stylesheet" href="../../style/default.css">
 
-    <!-- My CSS -->
+	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
 
 	<title>Vai e Volta Viagens</title>
 </head>
+
 <body>
 	<!-- SIDEBAR -->
 	<section id="sidebar">
@@ -22,59 +26,59 @@
 		</a>
 		<ul class="side-menu top">
 			<li>
-				<a href="/pages/employee/index.html">
+				<a href="../employee/index.html">
 					<i class="fa-solid fa-user"></i>
 					<span class="text">Cadastro Funcionario</span>
 				</a>
 			</li>
-			<li >
-				<a href="/pages/modal/index.html">
+			<li>
+				<a href="../modal/index.html">
 					<i class="fa-solid fa-bus"></i>
 					<span class="text">Cadastro Modais</span>
 				</a>
 			</li>
 			<li>
-				<a href="/pages/outlet/index.html">
+				<a href="../outlet/index.html">
 					<i class="fa-solid fa-sack-dollar"></i>
 					<span class="text">Cadastro Ponto de Vendas</span>
 				</a>
 			</li>
-      <li>
-				<a href="/pages/outlet/index.html">
+			<li>
+				<a href="../local/index.html">
 					<i class="fa-solid fa-map-location-dot"></i>
 					<span class="text">Cadastro Locais</span>
 				</a>
 			</li>
-      <li>
-				<a href="/pages/trip/index.html">
+			<li>
+				<a href="../trip/index.html">
 					<i class="fa-solid fa-plane-departure"></i>
 					<span class="text">Cadastro Viagens</span>
 				</a>
 			</li>
-      <li class="active">
-				<a href="#">
+			<li class="active">
+				<a href="../designationApproval/index.html">
 					<i class="fa-solid fa-person-circle-check"></i>
 					<span class="text">Aprovação de Designação</span>
 				</a>
 			</li>
-      <li>
-				<a href="/pages/employeeDesignation/index.html">
+			<li>
+				<a href="../employeeDesignation/index.html">
 					<i class="fa-solid fa-users"></i>
 					<span class="text">Designação de Funcionário</span>
 				</a>
 			</li>
-      <li>
-				<a href="/pages/approval/index.html">
+			<li>
+				<a href="../approval/index.html">
 					<i class="fa-solid fa-thumbs-up"></i>
 					<span class="text">Aprovação de Reservas</span>
 				</a>
 			</li>
-      <li class="logout">
-        <a href="#">
-          <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="link">Logout</span>
-        </a>
-      </li>
+			<li class="logout">
+				<a href="#">
+					<i class="fa-solid fa-right-from-bracket"></i>
+					<span class="link">Logout</span>
+				</a>
+			</li>
 		</ul>
 
 	</section>
@@ -92,41 +96,42 @@
 
 			<div class="table-data">
 				<div class="container">
-          <table class="table" id="designation-table">
-            <thead>
-              <tr>
-                <th>Id da Relação</th>
-                <th>Id do Funcionário</th>
-                <th>Id do Ponto de Venda</th>
-                <th>Status</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-        <div class="approval-popup-container" id="approval" style="display: none;">
-          <div class="approval-container">
-            <p>Deseja realmente aprovar a designação?</p>
-            <button class="confirm-approval-button">Sim</button>  
-            <button class="cancel-approval-button">Não</button>  
-          </div>
-        </div>
-        <div class="refusal-popup-container" id="refusal" style="display: none;">
-          <div class="refusal-container">
-            <p>Deseja realmente recusar a designação?</p>
-            <button class="confirm-refusal-button">Sim</button>  
-            <button class="cancel-refusal-button">Não</button>  
-          </div>
-        </div>
+					<table class="table" id="designation-table">
+						<thead>
+							<tr>
+								<th>Id da Relação</th>
+								<th>Id do Funcionário</th>
+								<th>Id do Ponto de Venda</th>
+								<th>Status</th>
+								<th>Ação</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="approval-popup-container" id="approval" style="display: none;">
+					<div class="approval-container">
+						<p>Deseja realmente aprovar a designação?</p>
+						<button class="confirm-approval-button">Sim</button>
+						<button class="cancel-approval-button">Não</button>
+					</div>
+				</div>
+				<div class="refusal-popup-container" id="refusal" style="display: none;">
+					<div class="refusal-container">
+						<p>Deseja realmente recusar a designação?</p>
+						<button class="confirm-refusal-button">Sim</button>
+						<button class="cancel-refusal-button">Não</button>
+					</div>
+				</div>
 			</div>
 		</main>
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
-  <script src="../../js/default.js"></script>
+	<script src="../../js/default.js"></script>
 	<script src="index.js"></script>
 
 </body>
+
 </html>
