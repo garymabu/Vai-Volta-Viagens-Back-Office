@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Designação de Funcionário</title>
+  <script defer src="./index.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", Arial, Helvetica, sans-serif
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Aprovação de Designação</h1>
+    <table class="table" id="designation-table">
+      <thead>
+        <tr>
+          <th>Id da Relação</th>
+          <th>Id do Funcionário</th>
+          <th>Id do Ponto de Venda</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div class="approval-popup-container" id="approval" style="display: none;">
+    <div class="approval-container">
+      <p>Deseja realmente aprovar a designação?</p>
+      <button class="confirm-approval-button">Sim</button>  
+      <button class="cancel-approval-button">Não</button>  
+    </div>
+  </div>
+  <div class="refusal-popup-container" id="refusal" style="display: none;">
+    <div class="refusal-container">
+      <p>Deseja realmente recusar a designação?</p>
+      <button class="confirm-refusal-button">Sim</button>  
+      <button class="cancel-refusal-button">Não</button>  
+    </div>
+  </div>
+</body>
+</html>

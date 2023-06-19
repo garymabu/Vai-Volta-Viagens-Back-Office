@@ -1,6 +1,6 @@
 const homeDomain = 'http://localhost:8080';
 
-await fetchLocals();
+fetchLocals();
 
 document.getElementById("local-form").addEventListener("submit", postFormData);
 document.querySelector('.post-update-button').onclick = updateLocal;

@@ -1,6 +1,6 @@
 const homeDomain = 'http://localhost:8080';
 
-await fetchmodals();
+fetchModals();
 
 document.getElementById("modal-form").addEventListener("submit", postFormData);
 document.querySelector('.post-update-button').onclick = updatemodal;
@@ -31,7 +31,7 @@ function fetchFormData(typeInputId, codeInputId, modelInputId, capacityInputId, 
   };
 }
 
-async function fetchmodals() {
+async function fetchModals() {
 
   // TODO: Integration with backend
   // const response = await fetch(`${homeDomain}/v1/modal`,

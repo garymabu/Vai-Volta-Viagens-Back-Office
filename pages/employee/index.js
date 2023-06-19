@@ -1,6 +1,6 @@
 const homeDomain = 'http://localhost:8080';
 
-await fetchEmployees();
+fetchEmployees(); 
 
 document.getElementById("employeeForm").addEventListener("submit", postFormData);
 document.querySelector('.post-update-button').onclick = updateEmployee;
