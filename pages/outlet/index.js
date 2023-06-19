@@ -1,6 +1,6 @@
 const homeDomain = "http://localhost:8080";
 
-await fetchEmployees();
+fetchEmployees();
 
 document
   .getElementById("employeeForm")
@@ -31,27 +31,13 @@ async function fetchEmployees() {
   const data = [
     {
       id: "130tbvg302t8",
-      name: "Zeca Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal",
+      name: "Viagem legal organizados",
+      address: "Rua da Salvação, 123, Rio de Janeiro",
     },
     {
-      id: "8230tbvg302t8",
-      name: "Mamou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal",
-    },
-    {
-      id: "bvg302t8dethjk",
-      name: "Chupou Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal",
-    },
-    {
-      id: "wejkoprvyh4p",
-      name: "Fudeu Gado",
-      address: "Rua da Macumba, 123, Rio de Janeiro",
-      type: "Registrador de Modal",
+      id: "130tbvg302t8dethjk",
+      name: "Posto viagem show",
+      address: "Avenida Bandeira vermelha, 123, Rio de Janeiro",
     },
   ];
 
@@ -63,7 +49,7 @@ async function fetchEmployees() {
 function insertIntoTable(data) {
   data.forEach((employee, index) => {
     const tableBody = document
-      .getElementById("employeeTable")
+      .getElementById("outlet-table")
       .getElementsByTagName("tbody")[0];
     const newRow = tableBody.insertRow();
 
@@ -76,10 +62,7 @@ function insertIntoTable(data) {
     const emailCell = newRow.insertCell(2);
     emailCell.innerHTML = employee.address;
 
-    const departmentCell = newRow.insertCell(3);
-    departmentCell.innerHTML = employee.type;
-
-    const actionCell = newRow.insertCell(4);
+    const actionCell = newRow.insertCell(3);
     actionCell.innerHTML = `
       <div class="card-button-container">
         <button class="update-button" id="update-button-${index}" data-id="${employee.id}">Atualizar</button>
